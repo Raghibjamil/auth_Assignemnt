@@ -39,7 +39,8 @@ if(getuserData && getuserData.username){
 
     if(result){
         const token=await getuserData.jwtToken();
-        console.log(token);
+        // console.log(`Token :- ${token}`);
+        getuserData.password = undefined;// this will help in erasing the password of user.....
         const cookieOption={
             maxAge:24*60*60*1000, // 24hr
             httpOnly:true //  not able to modify  the cookie in client side
@@ -66,4 +67,18 @@ if(getuserData && getuserData.username){
 }
 
 
-module.exports={userSignUp,userlogin}
+//getUserDetails ........
+const getUserDetails= async (req,res)=>{
+        const {id,username}=req.user;
+        try{
+            const userData=await UserModel.findOne({username});
+            res.status(200).send({
+                msg:"success",
+                data:userData
+            })
+        }catch(err){
+            res.status(501).send({msg:err.message})
+        }
+}
+
+module.exports={userSignUp,userlogin,getUserDetails}

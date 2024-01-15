@@ -1,0 +1,13 @@
+Important note related to cookie:-
+
+Yes, by default, browsers automatically include cookies associated with a specific domain and path in the Cookie header of HTTP requests to that domain and path. When a user visits a website, the browser sends the cookies related to that domain and path with each subsequent request to that domain.
+
+Here's a typical flow:
+
+The user makes an initial request to a website, and the server responds with a Set-Cookie header to set a cookie in the user's browser.
+
+The browser stores the cookie locally.
+
+For subsequent requests to the same domain and path, the browser automatically includes the stored cookies in the Cookie header of the HTTP request.
+
+It's important to note that there are additional attributes that can be set when creating a cookie (e.g., Secure, HttpOnly, SameSite) to control various aspects of cookie behavior and enhance security. The default behavior described above assumes a standard cookie without additional attributes.
